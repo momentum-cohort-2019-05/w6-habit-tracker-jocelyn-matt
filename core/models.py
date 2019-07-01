@@ -9,7 +9,7 @@ class Habit(models.Model):
     goal = models.TextField(max_length=300)
     name = models.CharField(max_length=200)
     user = models.ForeignKey(to=User, on_delete= models.CASCADE)
-    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    amount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 
     def __str__(self):
         return self.name
