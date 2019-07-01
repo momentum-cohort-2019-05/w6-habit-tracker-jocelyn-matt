@@ -26,3 +26,4 @@ class DailyRecord(models.Model):
         return self.amount
 
 
+#hey this is a test to see if the changes will save 

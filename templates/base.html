@@ -8,6 +8,12 @@
   <title>Habit Tracker - {% block title %}Home{% endblock %}</title>
 </head>
 <body>
+  {% if request.user.is_authenticated %}
+    Logged in as {{ request.user }} <a href="{% url 'auth_logout' %}">Logout</a>
+  {% else %}
+    <a href="{% url 'auth_login' %}">Login</a> |
+    <a href="{% url 'registration_register' %}">Register</a>
+  {% endif %}
   {% block content %}
   {% endblock %}
 </body>
