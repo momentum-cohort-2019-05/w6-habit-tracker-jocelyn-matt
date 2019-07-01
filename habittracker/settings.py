@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # Third-party
     'debug_toolbar',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
