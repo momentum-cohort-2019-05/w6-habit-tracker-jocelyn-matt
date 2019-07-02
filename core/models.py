@@ -22,8 +22,8 @@ class DailyRecord(models.Model):
     amount = models.IntegerField()
     habit = models.ForeignKey(to=Habit, on_delete= models.SET_NULL, null = True)
 
-    def __str__(self):
-        return self.amount
+    # def __str__(self):
+    #     return self.amount
 
 
 #hey this is a test to see if the changes will save
