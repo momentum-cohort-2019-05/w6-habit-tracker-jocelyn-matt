@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('', coreviews.indexview, name='index'),
+    path('habits/<int:pk>/', coreviews.HabitDetailView, name='habit-detail'),
 ]
 
 if settings.DEBUG:

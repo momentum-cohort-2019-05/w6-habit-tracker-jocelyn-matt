@@ -14,6 +14,9 @@ class Habit(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('habit-detail', args=[str(self.id)])
+
 class Meta:
         unique_together = ['name', 'record']
 

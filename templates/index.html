@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>INDEX</p>
+
+{% if habits %}
+    {% for habit in habits %}
+        <a href="{{ habit.get_absolute_url }}">{{habit.goal}}</a>
+    {% endfor %}
+{% else %}
+    <p> There are no habits </p>
+{% endif %}
+
 {% endblock %}
