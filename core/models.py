@@ -19,11 +19,11 @@ class Meta:
 
 class DailyRecord(models.Model):
     date = models.DateField(null = True, blank = True, default=date.today)
-    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    amount = models.IntegerField()
     habit = models.ForeignKey(to=Habit, on_delete= models.SET_NULL, null = True)
 
     def __str__(self):
         return self.amount
 
 
-#hey this is a test to see if the changes will save 
+#hey this is a test to see if the changes will save
