@@ -25,6 +25,7 @@ urlpatterns = [
     path('', coreviews.indexview, name='index'),
     path('index/', coreviews.indexview, name='index'),
     path('habits/<int:pk>/', coreviews.HabitDetailView, name='habit-detail'),
+    path('create_habit/', coreviews.CreateHabitView, name='create-habit'),
 ]
 
 if settings.DEBUG:

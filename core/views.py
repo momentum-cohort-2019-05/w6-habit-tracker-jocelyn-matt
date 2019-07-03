@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from core.models import Habit, DailyRecord
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from .forms import RecordForm
+from datetime import date
+from .forms import RecordForm, HabitForm
 
 # Create your views here.
 
@@ -12,16 +12,33 @@ def indexview(request):
     dailyrecords = DailyRecord.objects.all()
     return render(request, 'index.html', {"habits": habits, "dailyrecords": dailyrecords})
 
+@login_required
 def HabitDetailView(request, pk):
     habits = get_object_or_404(Habit, pk=pk)
-    dailyrecords = DailyRecord.objects.all()
+    record_date = request.POST.get('date', date.today())
+    record = DailyRecord(habit = habits, date = record_date)
     if request.method == 'POST':
-        form = RecordForm(request.POST)
+        form = RecordForm(data=request.POST, instance=record)
         if form.is_valid():
-            # return HttpResponseRedirect('')
-            render(request, 'index.html/')
+            form.save()
+            return redirect(to='index')
+
     else:
         form = RecordForm()
         
     return render(request, 'habit_detail.html', {"habits": habits, "dailyrecords": dailyrecords, "form": form})
 
+@login_required
+def CreateHabitView(request):
+    habits = get_object_or_404(Habit)
+
+    if request.method == 'POST':
+        habitform = HabitForm(request.POST)
+        if habitform.is_valid():
+            habitform.save()
+            return redirect(to='index')
+
+    else:
+        habitform = HabitForm()
+
+    return render(request, 'create_habit.html', {"habits": habits, "habitform": habitform})

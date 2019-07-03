@@ -7,7 +7,7 @@ from datetime import date, time
 
 class Habit(models.Model):
     goal = models.TextField(max_length=300)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, null=True)
     user = models.ForeignKey(to=User, on_delete= models.CASCADE)
     amount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 
@@ -17,8 +17,8 @@ class Habit(models.Model):
     def get_absolute_url(self):
         return reverse('habit-detail', args=[str(self.id)])
 
-class Meta:
-        unique_together = ['name', 'record']
+    class Meta:
+        unique_together = ['name', 'user']
 
 class DailyRecord(models.Model):
     date = models.DateField(null = True, blank = True, default=date.today)
