@@ -6,7 +6,7 @@ from datetime import date
 from .forms import RecordForm, HabitForm
 
 # Create your views here.
-
+@login_required
 def indexview(request):
     habits = Habit.objects.all()
     dailyrecords = DailyRecord.objects.all()
