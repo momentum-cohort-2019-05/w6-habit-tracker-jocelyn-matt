@@ -25,6 +25,9 @@ class DailyRecord(models.Model):
     amount = models.IntegerField()
     habit = models.ForeignKey(to=Habit, on_delete= models.SET_NULL, null = True, related_name="daily_records")
 
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['habit', 'date'], name='user')]
+
     # def __str__(self):
     #     return self.amount
 

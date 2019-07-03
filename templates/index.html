@@ -10,8 +10,12 @@
 {% if habits %}
     {% for habit in habits %}
         <ul> 
-            <a href="{{ habit.get_absolute_url }}">{{habit.goal}}</a><p>{{ user.habits }}</p>
+            <a href="{{ habit.get_absolute_url }}">{{habit.goal}}</a><p>{{ user. }}</p>
         </ul>
+        <ul>
+            {% for record in habit.daily_records.all %}
+                <li>{{ record.date }}: {{ record.amount }} {% if record.amount >= habit.amount %} Hooray! You met your goal! {% else %} Better luck next time! {% endif %}{% endfor %}
+        </ul> 
     {% endfor %}
 {% else %}
     <p> There are no habits </p>
