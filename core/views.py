@@ -33,7 +33,7 @@ def CreateHabitView(request):
     habits = Habit.objects.all()
 
     if request.method == 'POST':
-        habitform = HabitForm(request.POST)
+        habitform = HabitForm(data=request.POST)
         if habitform.is_valid():
             habitform.save()
             return redirect(to='index')
