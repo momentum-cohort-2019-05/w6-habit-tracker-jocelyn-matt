@@ -26,11 +26,11 @@ def HabitDetailView(request, pk):
     else:
         form = RecordForm()
         
-    return render(request, 'habit_detail.html', {"habits": habits, "dailyrecords": dailyrecords, "form": form})
+    return render(request, 'habit_detail.html', {"habits": habits, "record": record, "form": form})
 
 @login_required
 def CreateHabitView(request):
-    habits = get_object_or_404(Habit)
+    habits = Habit.objects.all()
 
     if request.method == 'POST':
         habitform = HabitForm(request.POST)

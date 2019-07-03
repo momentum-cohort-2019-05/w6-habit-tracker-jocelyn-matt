@@ -1,6 +1,7 @@
 from django import forms
 from datetime import date, time
 from core.models import DailyRecord, Habit
+from django.forms.widgets import HiddenInput
 
 class RecordForm(forms.ModelForm):
     

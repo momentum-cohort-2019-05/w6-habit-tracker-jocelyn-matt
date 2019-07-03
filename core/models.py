@@ -8,7 +8,7 @@ from datetime import date, time
 class Habit(models.Model):
     goal = models.TextField(max_length=300)
     name = models.CharField(max_length=200, null=True)
-    user = models.ForeignKey(to=User, on_delete= models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete= models.CASCADE, null=True)
     amount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 
     def __str__(self):
@@ -23,7 +23,7 @@ class Habit(models.Model):
 class DailyRecord(models.Model):
     date = models.DateField(null = True, blank = True, default=date.today)
     amount = models.IntegerField()
-    habit = models.ForeignKey(to=Habit, on_delete= models.SET_NULL, null = True)
+    habit = models.ForeignKey(to=Habit, on_delete= models.SET_NULL, null = True, related_name="daily_records")
 
     # def __str__(self):
     #     return self.amount

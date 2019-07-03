@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+<header> Habit Dashboard </header>
+
+ <p> Welcome to your daily habit tracker. We will help you keep track of your daily goals and keep track of your progress. </p>
+
+ <a href="{% url 'create-habit' %}"> Create Habit </a>
 
 {% if habits %}
     {% for habit in habits %}
-        <a href="{{ habit.get_absolute_url }}">{{habit.goal}}</a>
+        <ul> 
+            <a href="{{ habit.get_absolute_url }}">{{habit.goal}}</a><p>{{ user.habits }}</p>
+        </ul>
     {% endfor %}
 {% else %}
     <p> There are no habits </p>
 {% endif %}
 
 {% endblock %}
+
